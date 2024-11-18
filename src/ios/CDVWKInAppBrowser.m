@@ -1081,8 +1081,9 @@ BOOL isExiting = FALSE;
     viewBounds.origin.y = statusBarHeight;
     
     // account for web view height portion that may have been reduced by a previous call to this method
-    viewBounds.size.height = viewBounds.size.height - statusBarHeight + lastReducedStatusBarHeight;
-    lastReducedStatusBarHeight = statusBarHeight;
+    CGFloat bottomInset = 10.0;
+    viewBounds.size.height = viewBounds.size.height - bottomInset - statusBarHeight + lastReducedStatusBarHeight;
+    lastReducedStatusBarHeight = statusBarHeight + bottomInset;
     
     if ((_browserOptions.toolbar) && ([_browserOptions.toolbarposition isEqualToString:kInAppBrowserToolbarBarPositionTop])) {
         // if we have to display the toolbar on top of the web view, we need to account for its height
